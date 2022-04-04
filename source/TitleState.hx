@@ -115,7 +115,6 @@ class TitleState extends MusicBeatState
 
 		PlayerSettings.init();
 
-		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
@@ -255,12 +254,23 @@ class TitleState extends MusicBeatState
         var bgForeground:FlxSprite = new FlxSprite();
         bgForeground.loadGraphic(Paths.image('bgForeground'));
         bgForeground.x = 480;
-        bgForeground.y = 420;
+        bgForeground.y = 380;
         bgForeground.antialiasing = false;
         bgForeground.scale.set(4,4);
         bgForeground.scrollFactor.set(0,1);
         bgForeground.cameras = [titleCam];
         add(bgForeground);
+        
+        var djentTitle:FlxSprite = new FlxSprite();
+        djentTitle.loadGraphic(Paths.image('djentTitle'));
+        djentTitle.x = 0;
+        djentTitle.y = 120;
+        djentTitle.antialiasing = false;
+        djentTitle.scale.set(4,4);
+        djentTitle.scrollFactor.set();
+        djentTitle.screenCenter(X);
+        djentTitle.cameras = [titleCam];
+        add(djentTitle);
         
         titleCam.follow(camFollowPos, LOCKON, 1);
         
@@ -268,62 +278,40 @@ class TitleState extends MusicBeatState
 
 		swagShader = new ColorSwap();
 
-        titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
+        titleText = new FlxSprite(400, 220);
+
 		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/titleEnter.png";
+		var path = "mods/" + Paths.currentModDirectory + "/images/pressenter.png";
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "mods/images/titleEnter.png";
+			path = "mods/images/pressenter.png";
 		}
 		//trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path)){
-			path = "assets/images/titleEnter.png";
+			path = "assets/images/pressenter.png";
 		}
+
 		//trace(path, FileSystem.exists(path));
 		titleText.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path),File.getContent(StringTools.replace(path,".png",".xml")));
 		#else
 		
-		titleText.frames = Paths.getSparrowAtlas('titleEnter');
+		titleText.frames = Paths.getSparrowAtlas('pressenter');
 		#end
-		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
-		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
+		titleText.animation.addByPrefix('idle', "idle", 24);
+		titleText.animation.addByPrefix('press', "press", 24);
 		titleText.antialiasing = ClientPrefs.globalAntialiasing;
 		titleText.animation.play('idle');
+        titleText.antialiasing = false;
+        titleText.scale.set(4,4);
+
 		titleText.updateHitbox();
+        titleText.scrollFactor.set();
+                titleText.screenCenter(X);
+
 		// titleText.screenCenter(X);
 		add(titleText);
 
 
-
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
-
-		credGroup = new FlxGroup();
-		add(credGroup);
-		textGroup = new FlxGroup();
-        
-        blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		credGroup.add(blackScreen);
-
-
-
-
-		credTextShit = new Alphabet(0, 0, "", true);
-		credTextShit.screenCenter();
-
-		// credTextShit.alignment = CENTER;
-
-		credTextShit.visible = false;
-
-		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
-		add(ngSpr);
-		ngSpr.visible = false;
-		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
-		ngSpr.updateHitbox();
-		ngSpr.screenCenter(X);
-		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
-
-		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		if (initialized)
 			skipIntro();
@@ -333,20 +321,6 @@ class TitleState extends MusicBeatState
 		// credGroup.add(credTextShit);
 	}
 
-	function getIntroTextShit():Array<Array<String>>
-	{
-		var fullText:String = Assets.getText(Paths.txt('introText'));
-
-		var firstArray:Array<String> = fullText.split('\n');
-		var swagGoodArray:Array<Array<String>> = [];
-
-		for (i in firstArray)
-		{
-			swagGoodArray.push(i.split('--'));
-		}
-
-		return swagGoodArray;
-	}
 
 	var transitioning:Bool = false;
 	private static var playJingle:Bool = false;
@@ -410,10 +384,9 @@ class TitleState extends MusicBeatState
 			
 		}
 
-		if (initialized && pressedEnter && !skippedIntro)
-		{
+
 			skipIntro();
-		}
+
 
 		if(swagShader != null)
 		{
@@ -475,73 +448,6 @@ class TitleState extends MusicBeatState
 				gfDance.animation.play('danceLeft');
 		}
 
-		if(!closedState) {
-			sickBeats++;
-			switch (sickBeats)
-			{
-				case 1:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 15);
-					#else
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-					#end
-				// credTextShit.visible = true;
-				case 3:
-					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 15);
-					addMoreText('RiverOaken', 15);
-					addMoreText('shubs', 15);
-					#else
-					addMoreText('present');
-					#end
-				// credTextShit.text += '\npresent...';
-				// credTextShit.addText();
-				case 4:
-					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = 'In association \nwith';
-				// credTextShit.screenCenter();
-				case 5:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
-					#else
-					createCoolText(['In association', 'with'], -40);
-					#end
-				case 7:
-					addMoreText('newgrounds', -40);
-					ngSpr.visible = true;
-				// credTextShit.text += '\nNewgrounds';
-				case 8:
-					deleteCoolText();
-					ngSpr.visible = false;
-				// credTextShit.visible = false;
-
-				// credTextShit.text = 'Shoutouts Tom Fulp';
-				// credTextShit.screenCenter();
-				case 9:
-					createCoolText([curWacky[0]]);
-				// credTextShit.visible = true;
-				case 11:
-					addMoreText(curWacky[1]);
-				// credTextShit.text += '\nlmao';
-				case 12:
-					deleteCoolText();
-				// credTextShit.visible = false;
-				// credTextShit.text = "Friday";
-				// credTextShit.screenCenter();
-				case 13:
-					addMoreText('Friday');
-				// credTextShit.visible = true;
-				case 14:
-					addMoreText('Night');
-				// credTextShit.text += '\nNight';
-				case 15:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
-				case 16:
-					skipIntro();
-			}
-		}
 	}
 
 	var skippedIntro:Bool = false;

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="pressenter.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="idle0000" x="0" y="0" width="107" height="14"/>
+	<SubTexture name="press0000" x="0" y="14" width="107" height="14"/>
+	<SubTexture name="press0001" x="0" y="28" width="107" height="14"/>
+	<SubTexture name="press0002" x="0" y="42" width="107" height="14"/>
+	<SubTexture name="press0003" x="0" y="56" width="107" height="14"/>
+</TextureAtlas>
