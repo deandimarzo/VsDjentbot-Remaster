@@ -7,13 +7,12 @@ import sys.thread.Thread;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.FlxObject;
+import flixel.FlxCamera;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
-import flixel.FlxCamera;
 import haxe.Json;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
@@ -66,10 +65,21 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
     
     var titleCam:FlxCamera;
+    
+    
+
 
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
+
+	#if TITLE_SCREEN_EASTER_EGG
+	var easterEggKeys:Array<String> = [
+		'SHADOW', 'RIVER', 'SHUBS', 'BBPANZU'
+	];
+	var allowedKeys:String = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var easterEggKeysBuffer:String = '';
+	#end
 
 	var mustUpdate:Bool = false;
 	
@@ -81,7 +91,9 @@ class TitleState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-
+        
+        
+      
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		WeekData.loadTheFirstEnabledMod();
 		
@@ -119,7 +131,6 @@ class TitleState extends MusicBeatState
 
 		// DEBUG BULLSHIT
 
-		swagShader = new ColorSwap();
 		super.create();
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -130,6 +141,7 @@ class TitleState extends MusicBeatState
 
 		// IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
+		
 
 		if(!initialized && FlxG.save.data != null && FlxG.save.data.fullscreen)
 		{
@@ -171,19 +183,33 @@ class TitleState extends MusicBeatState
 		#end
 	}
 
-	var logoBl:FlxSprite;
-	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
-	var swagShader:ColorSwap = null;
-    
-    var camFollowPos:FlxObject = new FlxObject(0, 200, 1, 1);
 
 	function startIntro()
 	{
 		if (!initialized)
 		{
+			/*var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+			diamond.persist = true;
+			diamond.destroyOnNoUse = false;
 
+			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), {asset: diamond, width: 32, height: 32},
+				new FlxRect(-300, -300, FlxG.width * 1.8, FlxG.height * 1.8));
+			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1),
+				{asset: diamond, width: 32, height: 32}, new FlxRect(-300, -300, FlxG.width * 1.8, FlxG.height * 1.8));
+				
+			transIn = FlxTransitionableState.defaultTransIn;
+			transOut = FlxTransitionableState.defaultTransOut;*/
+
+			// HAD TO MODIFY SOME BACKEND SHIT
+			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
+			// https://github.com/HaxeFlixel/flixel-addons/pull/348
+
+			// var music:FlxSound = new FlxSound();
+			// music.loadStream(Paths.music('freakyMenu'));
+			// FlxG.sound.list.add(music);
+			// music.play();
 
 			if(FlxG.sound.music == null) {
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
@@ -194,13 +220,15 @@ class TitleState extends MusicBeatState
 
 		Conductor.changeBPM(titleJSON.bpm);
 		persistentUpdate = true;
-        
+
         var bgSky:FlxSprite;
         var bgCity1:FlxSprite;
         var bgCity2:FlxSprite;
         var bgCity3:FlxSprite;
         var bgCity4:FlxSprite;
         var bgForeground:FlxSprite;
+        
+
         
         var bgSky:FlxSprite = new FlxSprite();
         bgSky.loadGraphic(Paths.image('bgSky'));
@@ -241,11 +269,12 @@ class TitleState extends MusicBeatState
         bgCity2.scrollFactor.set(0,0.4);
         bgCity2.cameras = [titleCam];
         add(bgCity2);
+        
 
         var bgCity1:FlxSprite = new FlxSprite();
         bgCity1.loadGraphic(Paths.image('bgCity1'));
         bgCity1.x = 480;
-        bgCity1.y = 380;
+        bgCity1.y = 500;
         bgCity1.antialiasing = false;
         bgCity1.scale.set(4,4);
         bgCity1.scrollFactor.set(0,0.5);
@@ -262,13 +291,12 @@ class TitleState extends MusicBeatState
         bgForeground.cameras = [titleCam];
         add(bgForeground);
         
-        titleCam.follow(camFollowPos, LOCKON, 1);
+        FlxTween.tween(titleCam, {scroll.y: -400}, 4, {type:FlxTween.PINGPONG});
         
-        FlxTween.tween(camFollowPos, {y: 180}, 4, {type:FlxTween.PINGPONG, ease: FlxEase.quadInOut});
+        
 
-		swagShader = new ColorSwap();
-
-        titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
+	
+		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
 		#if (desktop && MODS_ALLOWED)
 		var path = "mods/" + Paths.currentModDirectory + "/images/titleEnter.png";
 		//trace(path, FileSystem.exists(path));
@@ -293,7 +321,10 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-
+		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
+		logo.screenCenter();
+		logo.antialiasing = ClientPrefs.globalAntialiasing;
+		// add(logo);
 
 		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
@@ -301,12 +332,9 @@ class TitleState extends MusicBeatState
 		credGroup = new FlxGroup();
 		add(credGroup);
 		textGroup = new FlxGroup();
-        
-        blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+
+		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		credGroup.add(blackScreen);
-
-
-
 
 		credTextShit = new Alphabet(0, 0, "", true);
 		credTextShit.screenCenter();
@@ -407,7 +435,52 @@ class TitleState extends MusicBeatState
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 			}
-			
+			#if TITLE_SCREEN_EASTER_EGG
+			else if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
+			{
+				var keyPressed:FlxKey = FlxG.keys.firstJustPressed();
+				var keyName:String = Std.string(keyPressed);
+				if(allowedKeys.contains(keyName)) {
+					easterEggKeysBuffer += keyName;
+					if(easterEggKeysBuffer.length >= 32) easterEggKeysBuffer = easterEggKeysBuffer.substring(1);
+					//trace('Test! Allowed Key pressed!!! Buffer: ' + easterEggKeysBuffer);
+
+					for (wordRaw in easterEggKeys)
+					{
+						var word:String = wordRaw.toUpperCase(); //just for being sure you're doing it right
+						if (easterEggKeysBuffer.contains(word))
+						{
+							//trace('YOOO! ' + word);
+							if (FlxG.save.data.psychDevsEasterEgg == word)
+								FlxG.save.data.psychDevsEasterEgg = '';
+							else
+								FlxG.save.data.psychDevsEasterEgg = word;
+							FlxG.save.flush();
+
+							FlxG.sound.play(Paths.sound('ToggleJingle'));
+
+							var black:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+							black.alpha = 0;
+							add(black);
+
+							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
+								function(twn:FlxTween) {
+									FlxTransitionableState.skipNextTransIn = true;
+									FlxTransitionableState.skipNextTransOut = true;
+									MusicBeatState.switchState(new TitleState());
+								}
+							});
+							FlxG.sound.music.fadeOut();
+							closedState = true;
+							transitioning = true;
+							playJingle = true;
+							easterEggKeysBuffer = '';
+							break;
+						}
+					}
+				}
+			}
+			#end
 		}
 
 		if (initialized && pressedEnter && !skippedIntro)
@@ -415,11 +488,6 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		}
 
-		if(swagShader != null)
-		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
-		}
 
 		super.update(elapsed);
 	}
@@ -464,16 +532,8 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if(logoBl != null) 
-			logoBl.animation.play('bump', true);
 
-		if(gfDance != null) {
-			danceLeft = !danceLeft;
-			if (danceLeft)
-				gfDance.animation.play('danceRight');
-			else
-				gfDance.animation.play('danceLeft');
-		}
+
 
 		if(!closedState) {
 			sickBeats++;
