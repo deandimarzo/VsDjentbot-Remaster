@@ -1,0 +1,59 @@
+{
+    "songs": [
+		[
+			"Sideways",
+			"djentbot",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Does It",
+			"djentbot-angry",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Crazy",
+			"djentbeast",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Dog Gods",
+			"perfectdjent",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+    "hiddenUntilUnlocked": false,
+    "hideFreeplay": false,
+    "weekBackground": "stage",
+    "difficulties": "",
+    "weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+    "storyName": "Your New Week",
+    "weekName": "Djent",
+    "freeplayColor": [
+		146,
+		113,
+		253
+	],
+    "hideStoryMode": false,
+    "weekBefore": "tutorial",
+    "startUnlocked": true
+}

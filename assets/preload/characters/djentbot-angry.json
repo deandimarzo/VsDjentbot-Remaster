@@ -1,0 +1,78 @@
+{
+    "animations": [
+        {
+            "offsets": [
+				22,
+				-252
+			],
+            "indices": [],
+            "fps": 12,
+            "anim": "singLEFT",
+            "loop": true,
+            "name": "DjentBot02_Left"
+		},
+        {
+            "offsets": [
+				68,
+				-384
+			],
+            "indices": [],
+            "fps": 12,
+            "anim": "singDOWN",
+            "loop": true,
+            "name": "DjentBot02_Down"
+		},
+        {
+            "offsets": [
+				-65,
+				-250
+			],
+            "indices": [],
+            "fps": 12,
+            "anim": "singUP",
+            "loop": true,
+            "name": "DjentBot02_Up"
+		},
+        {
+            "offsets": [
+				-147,
+				-337
+			],
+            "indices": [],
+            "fps": 12,
+            "anim": "singRIGHT",
+            "loop": true,
+            "name": "DjentBot02_Right"
+		},
+        {
+            "offsets": [
+				-19,
+				-230
+			],
+            "indices": [],
+            "fps": 26,
+            "anim": "idle",
+            "loop": true,
+            "name": "DjentBot02_Idle"
+		}
+	],
+    "no_antialiasing": false,
+    "image": "characters/DJENTBOT-ANGRY",
+    "position": [
+		0,
+		0
+	],
+    "healthicon": "djentbot-angry",
+    "flip_x": false,
+    "healthbar_colors": [
+		175,
+		102,
+		206
+	],
+    "camera_position": [
+		200,
+		200
+	],
+    "sing_duration": 6.1,
+    "scale": 1
+}

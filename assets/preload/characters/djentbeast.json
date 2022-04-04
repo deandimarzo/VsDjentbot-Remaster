@@ -1,0 +1,78 @@
+{
+    "animations": [
+        {
+            "offsets": [
+				71,
+				-70
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "idle",
+            "loop": false,
+            "name": "IDLE"
+		},
+        {
+            "offsets": [
+				74,
+				-70
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singLEFT",
+            "loop": true,
+            "name": "LEFT"
+		},
+        {
+            "offsets": [
+				72,
+				-76
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singDOWN",
+            "loop": true,
+            "name": "DOWN"
+		},
+        {
+            "offsets": [
+				72,
+				-66
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singUP",
+            "loop": true,
+            "name": "UP"
+		},
+        {
+            "offsets": [
+				71,
+				-70
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singRIGHT",
+            "loop": true,
+            "name": "RIGHT"
+		}
+	],
+    "no_antialiasing": false,
+    "image": "characters/DJENTBEAST",
+    "position": [
+		0,
+		0
+	],
+    "healthicon": "djentbeast",
+    "flip_x": false,
+    "healthbar_colors": [
+		175,
+		102,
+		206
+	],
+    "camera_position": [
+		0,
+		-100
+	],
+    "sing_duration": 6.1,
+    "scale": 1
+}

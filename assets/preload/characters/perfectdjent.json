@@ -1,0 +1,78 @@
+{
+    "animations": [
+        {
+            "offsets": [
+				51,
+				-130
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "idle",
+            "loop": false,
+            "name": "DB4_Idle"
+		},
+        {
+            "offsets": [
+				32,
+				-134
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singLEFT",
+            "loop": true,
+            "name": "DB4_Left"
+		},
+        {
+            "offsets": [
+				47,
+				-155
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singDOWN",
+            "loop": true,
+            "name": "DB4_Down"
+		},
+        {
+            "offsets": [
+				5,
+				-90
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singUP",
+            "loop": true,
+            "name": "DB4_Up"
+		},
+        {
+            "offsets": [
+				55,
+				-127
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singRIGHT",
+            "loop": true,
+            "name": "DB4_Right"
+		}
+	],
+    "no_antialiasing": false,
+    "image": "characters/PERFECTDJENT",
+    "position": [
+		0,
+		0
+	],
+    "healthicon": "perfectdjent",
+    "flip_x": false,
+    "healthbar_colors": [
+		175,
+		102,
+		206
+	],
+    "camera_position": [
+		200,
+		200
+	],
+    "sing_duration": 6.1,
+    "scale": 1
+}

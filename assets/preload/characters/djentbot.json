@@ -1,0 +1,78 @@
+{
+    "animations": [
+        {
+            "offsets": [
+				40,
+				-280
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singLEFT",
+            "loop": true,
+            "name": "DjentBot01_Left"
+		},
+        {
+            "offsets": [
+				-61,
+				-256
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singDOWN",
+            "loop": true,
+            "name": "DjentBot01_Down"
+		},
+        {
+            "offsets": [
+				-56,
+				-251
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singUP",
+            "loop": true,
+            "name": "DjentBot01_Up"
+		},
+        {
+            "offsets": [
+				-165,
+				-303
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "singRIGHT",
+            "loop": true,
+            "name": "DjentBot01_Right"
+		},
+        {
+            "offsets": [
+				-29,
+				-260
+			],
+            "indices": [],
+            "fps": 24,
+            "anim": "idle",
+            "loop": false,
+            "name": "DjentBot01_Idle"
+		}
+	],
+    "no_antialiasing": false,
+    "image": "characters/DJENTBOT",
+    "position": [
+		0,
+		0
+	],
+    "healthicon": "djentbot",
+    "flip_x": false,
+    "healthbar_colors": [
+		175,
+		102,
+		206
+	],
+    "camera_position": [
+		200,
+		200
+	],
+    "sing_duration": 6.1,
+    "scale": 1
+}
