@@ -2,7 +2,7 @@
 <project>
     <!-- _________________________ Application Settings _________________________ -->
 
-    <app title="Friday Night Funkin' vs Djentbot REMASTERED" file="PsychEngine" packageName="com.longestsoloever.djentbotrm" package="com.longestsoloever.djentbotrm" main="Main" version="1.5.0" company="LongestSoloEver" />
+    <app title="Friday Night Funkin' vs Djentbot REMASTERED" file="djentbot" packageName="com.longestsoloever.djentbotrm" package="com.longestsoloever.djentbotrm" main="Main" version="1.5.0" company="LongestSoloEver" />
 
     <!--Switch Export with Unique ApplicationID and Icon-->
     <set name="APP_ID" value="0x0100f6c013bbc000" />

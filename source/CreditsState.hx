@@ -81,6 +81,12 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+            ['Vs. Djentbot Team'],
+			['LongestSoloEver',		'blank',		'Music, Character, Coding, Title Art, Charting',							'https://twitter.com/longestsoloever',	'ff0000'],
+			['Neme6',				'blank',			'Background Art',					'',			'279ADC'],
+            ['RiverOaken',			'blank',		'Guitar BF Sprites',						'https://twitter.com/RiverOaken',		'C30085'],
+            ['WolfyBatata',				'blank',			'Icon Art',					'',			'279ADC'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',							'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',						'https://twitter.com/RiverOaken',		'C30085'],

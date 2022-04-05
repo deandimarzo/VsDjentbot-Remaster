@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Menu_djentbot.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="DjentBot01_Idle0000" x="0" y="0" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0001" x="355" y="0" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0002" x="710" y="0" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0003" x="1065" y="0" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0004" x="1420" y="0" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0005" x="0" y="373" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0006" x="355" y="373" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0007" x="710" y="373" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0008" x="1065" y="373" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0009" x="1420" y="373" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0010" x="0" y="746" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0011" x="355" y="746" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0012" x="710" y="746" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0013" x="1065" y="746" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0014" x="1420" y="746" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0015" x="0" y="1119" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0016" x="355" y="1119" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0017" x="710" y="1119" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0018" x="1065" y="1119" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0019" x="1420" y="1119" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0020" x="0" y="1492" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0021" x="355" y="1492" width="355" height="373"/>
+	<SubTexture name="DjentBot01_Idle0022" x="710" y="1492" width="355" height="373"/>
+</TextureAtlas>

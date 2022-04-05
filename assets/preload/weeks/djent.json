@@ -1,21 +1,33 @@
 {
-    "songs": [
+	"storyName": "Now 100% Jack-Free",
+	"difficulties": "",
+	"hideFreeplay": false,
+	"weekBackground": "studio",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"hideStoryMode": false,
+	"songs": [
 		[
 			"Sideways",
 			"djentbot",
 			[
-				146,
-				113,
-				253
+				206,
+				194,
+				124
 			]
 		],
 		[
 			"Does It",
 			"djentbot-angry",
 			[
-				146,
-				113,
-				253
+				206,
+				154,
+				84
 			]
 		],
 		[
@@ -23,8 +35,8 @@
 			"djentbeast",
 			[
 				146,
-				113,
-				253
+				0,
+				0
 			]
 		],
 		[
@@ -32,28 +44,16 @@
 			"perfectdjent",
 			[
 				146,
-				113,
-				253
+				0,
+				133
 			]
 		]
 	],
-    "hiddenUntilUnlocked": false,
-    "hideFreeplay": false,
-    "weekBackground": "stage",
-    "difficulties": "",
-    "weekCharacters": [
-		"dad",
+	"weekCharacters": [
+		"djentbot",
 		"bf",
 		"gf"
 	],
-    "storyName": "Your New Week",
-    "weekName": "Djent",
-    "freeplayColor": [
-		146,
-		113,
-		253
-	],
-    "hideStoryMode": false,
-    "weekBefore": "tutorial",
-    "startUnlocked": true
+	"hiddenUntilUnlocked": false,
+	"weekName": "Djent Week"
 }
