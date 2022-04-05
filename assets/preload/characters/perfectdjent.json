@@ -20,7 +20,7 @@
             "fps": 24,
             "anim": "singLEFT",
             "loop": true,
-            "name": "DB4_Left"
+            "name": "DB4_Right"
 		},
         {
             "offsets": [
@@ -53,7 +53,7 @@
             "fps": 24,
             "anim": "singRIGHT",
             "loop": true,
-            "name": "DB4_Right"
+            "name": "DB4_Left"
 		}
 	],
     "no_antialiasing": false,
